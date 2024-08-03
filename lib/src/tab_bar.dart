@@ -237,10 +237,10 @@ class _SegmentedTabControlState extends State<_SegmentedTabControl>
       if (newController == null) {
         throw FlutterError(
           'No TabController for ${widget.runtimeType}.\n'
-          'When creating a ${widget.runtimeType}, you must either provide an explicit '
-          'TabController using the "controller" property, or you must ensure that there '
-          'is a DefaultTabController above the ${widget.runtimeType}.\n'
-          'In this case, there was neither an explicit controller nor a default controller.',
+              'When creating a ${widget.runtimeType}, you must either provide an explicit '
+              'TabController using the "controller" property, or you must ensure that there '
+              'is a DefaultTabController above the ${widget.runtimeType}.\n'
+              'In this case, there was neither an explicit controller nor a default controller.',
         );
       }
       return true;
@@ -370,6 +370,10 @@ class _SegmentedTabControlState extends State<_SegmentedTabControl>
                     duration: kTabScrollDuration,
                     curve: Curves.ease,
                     decoration: widget.barDecoration?.copyWith(
+                      border: Border.all(
+                        color: Color(0xffDDDFE7),
+                        width: 1,
+                      ),
                       color: currentTab.backgroundColor,
                       gradient: currentTab.backgroundGradient,
                     ),
@@ -466,9 +470,9 @@ class _SegmentedTabControlState extends State<_SegmentedTabControl>
       return null;
     }
     return (int index) => () {
-          _internalAnimationController.stop();
-          _controller!.animateTo(index);
-        };
+      _internalAnimationController.stop();
+      _controller!.animateTo(index);
+    };
   }
 
   GestureDragDownCallback? _onPanDown() {
@@ -582,28 +586,25 @@ class _Labels extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: List.generate(
           tabs.length,
-          (index) {
+              (index) {
             final tab = tabs[index];
             return Flexible(
               flex: tab.flex,
               child: InkWell(
-                splashColor: tab.splashColor ?? splashColor,
-                highlightColor: tab.splashHighlightColor ?? splashHighlightColor,
-                borderRadius: radius as BorderRadius?,
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                splashColor: Colors.transparent,
+                splashFactory: NoSplash.splashFactory,
+                //  borderRadius: radius as BorderRadius?,
                 onTap: callbackBuilder?.call(index),
                 child: Padding(
                   padding: tabPadding,
                   child: Center(
                     child: AnimatedDefaultTextStyle(
-                      duration: kTabScrollDuration,
-                      curve: Curves.ease,
-                      style: (index == currentIndex) ? selectedTextStyle : textStyle,
-                      child: Text(
-                        tab.label,
-                        overflow: TextOverflow.clip,
-                        maxLines: 1,
-                        textAlign: TextAlign.center,
-                      ),
+                        duration: kTabScrollDuration,
+                        curve: Curves.ease,
+                        style: (index == currentIndex) ? selectedTextStyle : textStyle,
+                        child: tab.label??Text("Hi")
                     ),
                   ),
                 ),

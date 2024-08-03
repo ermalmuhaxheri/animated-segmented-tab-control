@@ -17,7 +17,7 @@ class SegmentTab {
   });
 
   /// This text will be displayed on tab.
-  final String label;
+  final Widget? label;
 
   /// Tab flex factor
   final int flex;

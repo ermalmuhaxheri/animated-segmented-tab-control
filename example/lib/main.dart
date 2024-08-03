@@ -35,18 +35,18 @@ class MyApp extends StatelessWidget {
                     // All specified values will override the [SegmentedTabControl] setting
                     tabs: [
                       SegmentTab(
-                        label: 'ACCOUNT',
+                        label: Text('ACCOUNT'),
                         // For example, this overrides [indicatorColor] from [SegmentedTabControl]
                         color: Colors.red.shade300,
                         backgroundColor: Colors.red.shade100,
                       ),
                       SegmentTab(
-                        label: 'HOME',
+                        label: Text('ACCOUNT'),
                         backgroundColor: Colors.blue.shade100,
                         color: Colors.blue.shade300,
                       ),
                       SegmentTab(
-                        label: 'NEW',
+                        label: Text('ACCOUNT'),
                         backgroundColor: Colors.orange.shade100,
                         color: Colors.orange.shade300,
                       ),
